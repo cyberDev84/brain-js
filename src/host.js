@@ -4,6 +4,7 @@
 class BrainHost {
 
     constructor(options) {
+        console.log("Creating host with options",  options);
         if (typeof Speech === "undefined") {
             console.warn("The speech component is not created, no speech component implementation");
         } else {

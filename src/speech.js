@@ -3,6 +3,7 @@
  */
 class BrainSpeech {
     constructor(options) {
+        console.log("Creating speech with options",  options);
         this.voiceId = options.voiceId;
         console.log("Creating speech", options);
         const speechComponent = options.internalHost.speechComponent;
