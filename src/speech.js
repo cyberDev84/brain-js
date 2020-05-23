@@ -1,3 +1,6 @@
+/**
+ * This is the speech container
+ */
 class BrainSpeech {
     constructor(options) {
         this.voiceId = options.voiceId;
