@@ -4,20 +4,18 @@
 class BrainSpeech {
     constructor(options) {
         console.log("Creating speech with options",  options);
-        this.voiceId = options.voiceId;
+        this.lang = options.lang;
         console.log("Creating speech", options);
         const speechComponent = options.internalHost.speechComponent;
-        this.speech = new InternalSpeechComponent();
-        this.speech.voiceEngine = "standard";
-        this.speech.voiceId = this.voiceId;
-        speechComponent.addSpeech(this.speech);
+        this._speech = new sumerian.Speech();
+        this._speech.voiceEngine = "standard";
+        this._speech.voiceId = BrainHost.VOICE_ID_BY_LANG[this.lang];
+        speechComponent.addSpeech(this._speech);
     }
 
     play(message, lang) {
-        if(lang) {
-            this.speech.voiceId = lang ? BrainHost.VOICE_ID_BY_LANG[lang] : this.options.voiceId;
-        }
-        this.speech.body = message;
-        this.speech.play();
+        this._speech.voiceId = BrainHost.VOICE_ID_BY_LANG[lang || this.lang];
+        this._speech.body = message;
+        this._speech.play();
     }
 }

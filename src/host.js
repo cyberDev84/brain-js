@@ -17,7 +17,7 @@ class BrainHost {
 
     constructor(options) {
         console.log("Creating host with options",  options);
-        if (typeof Speech === "undefined") {
+        if (typeof BrainSpeech === "undefined") {
             console.warn("The speech component is not created, no speech component implementation");
         } else {
             this.speech = this.buildSpeech(options);
@@ -30,8 +30,8 @@ class BrainHost {
             return null;
         } else {
             var speechOptions = {};
-            const lang = (options.speech.lang || navigator.language).substring(0, 2);
-            speechOptions.voiceId = options.speech.voiceId || BrainHost.VOICE_ID_BY_LANG[lang];
+            const lang = options.speech.lang || navigator.language;
+            speechOptions.lang = (options.speech.lang || lang).substring(0, 2);
             speechOptions.internalHost = options.internalHost;
             return new BrainSpeech(speechOptions);
         }
