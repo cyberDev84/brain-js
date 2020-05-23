@@ -4,14 +4,20 @@ class App {
 
         let hostParams = {
             internalHost: this.options.host,
-            speech: {lang: this.options.lang}
+            speech: {lang: this.options.lang},
+            detection: {
+                localVoiceDetection: {}
+            }
         };
 
-        let host = new BrainHost(hostParams);
-        host.speech.play("Bonjour tout le monde, je m'appel Brain");
+        this.host = new BrainHost(hostParams);
     }
 
     start(ctx) {
-        console.log("Start");
+        //this.host.speech.play("Bonjour tout le monde, je m'appel Brain");
+        sumerian.SystemBus.addListener("host.start.success", () => {
+            console.log("Success starting host");
+        } );
+        this.host.start();
     }
 }

@@ -13,9 +13,14 @@ class BrainSpeech {
         speechComponent.addSpeech(this._speech);
     }
 
-    play(message, lang) {
+    play = (message, lang) => {
         this._speech.voiceId = BrainHost.VOICE_ID_BY_LANG[lang || this.lang];
         this._speech.body = message;
         this._speech.play();
+    }
+
+    start = () => {
+        console.log("Starting speech component");
+        sumerian.SystemBus.emit("speech.start.success");
     }
 }
