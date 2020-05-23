@@ -15,7 +15,7 @@ class BrainSpeech {
 
     play(message, lang) {
         if(lang) {
-            this.speech.voiceId = lang ? VOICE_ID_BY_LANG[lang] : this.options.voiceId;
+            this.speech.voiceId = lang ? BrainHost.VOICE_ID_BY_LANG[lang] : this.options.voiceId;
         }
         this.speech.body = message;
         this.speech.play();

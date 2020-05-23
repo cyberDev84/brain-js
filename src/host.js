@@ -3,6 +3,18 @@
  */
 class BrainHost {
 
+    static VOICE_ID_BY_LANG = {
+        "ar": "Zeina",
+        "en": "Joanna",
+        "fr": "Celine"
+    }
+
+    static LANG_BY_VOICE_ID = {
+        "ar": "Zeina",
+        "en": "Joanna",
+        "fr": "Celine"
+    }
+
     constructor(options) {
         console.log("Creating host with options",  options);
         if (typeof Speech === "undefined") {
@@ -19,21 +31,9 @@ class BrainHost {
         } else {
             var speechOptions = {};
             const lang = (options.speech.lang || navigator.language).substring(0, 2);
-            speechOptions.voiceId = options.speech.voiceId || VOICE_ID_BY_LANG[lang];
+            speechOptions.voiceId = options.speech.voiceId || BrainHost.VOICE_ID_BY_LANG[lang];
             speechOptions.internalHost = options.internalHost;
             return new BrainSpeech(speechOptions);
         }
     }
-}
-
-const VOICE_ID_BY_LANG = {
-    "ar": "Zeina",
-    "en": "Joanna",
-    "fr": "Celine"
-}
-
-const LANG_BY_VOICE_ID = {
-    "ar": "Zeina",
-    "en": "Joanna",
-    "fr": "Celine"
 }
